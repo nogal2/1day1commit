@@ -1,0 +1,43 @@
+fun main(args: Array<String>) {
+    var winPt:Int = 0
+    var losePt:Int = 0
+    var drawPt:Int = 0
+    var comRPS:Int
+    var userRPS:Int
+    var result:Int
+    while(true) {
+        println("게임을 시작하겠습니다.")
+        comRPS = (Math.random() * 3).toInt()
+        println("가위(0) 바위(1) 보(2)를 입력해 주세요 : ")
+        userRPS = readLine()?.toInt()!!
+
+        result = (comRPS - userRPS + 2) % 3
+        var resultMsg = ""
+        when (result) {
+            1 -> {
+                resultMsg="당신이 이겼습니다."
+                winPt++
+            }
+            0 -> {
+                resultMsg="당신이 졌습니다."
+                losePt++
+            }
+            2 -> {
+                resultMsg="비겼습니다."
+                drawPt++
+            }
+        }
+        var userCh=""
+        var comCh=""
+        userCh = if (userRPS == 0) "가위" else if (userRPS == 1) "바위" else "보"
+        comCh = if (comRPS == 0) "가위" else if (comRPS == 1) "바위" else "보"
+
+        println("컴퓨터는 ${comCh} 당신은 ${userCh}입니다. $resultMsg")
+        println("현재 전적은 ${winPt}승 ${drawPt}무 ${losePt}패 입니다. 더 하시겠습니까?(y/n)")
+        var replay = readLine()
+        if (replay == "n" || replay == "N") {
+            break
+        }
+        println("게임을 다시 시작하겠습니다.")
+    }
+}
